@@ -1,0 +1,122 @@
+SELECT * FROM `FeedbackSystem`.user_mst;
+
+insert into user_mst values(02335304416,'NEERAJ KUMAR','NEERAJ','meneerajwhoru@gmail.com','9968527049','STUDENT','Male','Mr.',2016,2019);
+
+insert into role(role_name,role_status) values('STUDENT','ACTIVE');
+insert into role(role_name,role_status) values('TEACHER','ACTIVE');
+insert into role(role_name,role_status) values('DIRECTOR','INACTIVE');
+insert into role(role_name,role_status) values('ADMIN','ACTIVE');
+
+insert into semester(semester_name,semester_status) values('I','INACTIVE');
+insert into semester(semester_name,semester_status) values('II','ACTIVE');
+insert into semester(semester_name,semester_status) values('III','INACTIVE');
+insert into semester(semester_name,semester_status) values('IV','ACTIVE');
+insert into semester(semester_name,semester_status) values('V','INACTIVE');
+insert into semester(semester_name,semester_status) values('VI','ACTIVE');
+select * from semester;
+
+
+insert into subject(subject_id,subject_name,subject_code) values(44101,'Fundamentals of IT','101');
+insert into subject(subject_id,subject_name,subject_code) values(44103,'Programming in C','103');
+insert into subject(subject_id,subject_name,subject_code) values(44105,'Discrete Mathematics','105');
+insert into subject(subject_id,subject_name,subject_code) values(44107,'Computer Organization ','107');
+insert into subject(subject_id,subject_name,subject_code) values(44109,'Principles and Practices of Management','109 ');
+insert into subject(subject_id,subject_name,subject_code) values(44151,'Fundamentals of IT Lab.','151');
+insert into subject(subject_id,subject_name,subject_code) values(44153,'Programming in C Lab','153');
+insert into subject(subject_id,subject_name,subject_code) values(44155,'Computer Organization Lab.','155');
+insert into subject(subject_id,subject_name,subject_code) values(44161,'General Proficiency I*','161');
+insert into subject(subject_id,subject_name,subject_code) values(44102,'Data and File Structures','102'); 
+insert into subject(subject_id,subject_name,subject_code) values(44104,'Object Oriented Programming in C++','104');
+insert into subject(subject_id,subject_name,subject_code) values(44106,'Operating Systems','106');
+insert into subject(subject_id,subject_name,subject_code) values(44108,'Database Management Systems','108');
+insert into subject(subject_id,subject_name,subject_code) values(44110,'Software Engineering','110');
+insert into subject(subject_id,subject_name,subject_code) values(44152,'Data and File Structures Lab','152');
+insert into subject(subject_id,subject_name,subject_code) values(44154,'Object Oriented Programming in C++ Lab','154');
+insert into subject(subject_id,subject_name,subject_code) values(44156,'Database Management Systems Lab','156');
+insert into subject(subject_id,subject_name,subject_code) values(44158,'Software Engineering Lab.','158');
+insert into subject(subject_id,subject_name,subject_code) values(44162,'General Proficiency II*','162');
+insert into subject(subject_id,subject_name,subject_code) values(44201,'Theory of Computation','201');
+insert into subject(subject_id,subject_name,subject_code) values(44203,'Computer Graphics','203');
+insert into subject(subject_id,subject_name,subject_code) values(44205,'Java Programming','205');
+insert into subject(subject_id,subject_name,subject_code) values(44207,'Data Communications and Networking','207');
+insert into subject(subject_id,subject_name,subject_code) values(44209,'C# Programming','209');
+insert into subject(subject_id,subject_name,subject_code) values(44251,'Computer Graphics Lab','251');
+insert into subject(subject_id,subject_name,subject_code) values(44253,'Java Programming Lab','253');
+insert into subject(subject_id,subject_name,subject_code) values(44255,'C# Programming Lab.','255');
+insert into subject(subject_id,subject_name,subject_code) values(44261,'General Proficiency III*','261');
+insert into subject(subject_id,subject_name,subject_code) values(44202,'Design and Analysis of Algorithms','202');
+insert into subject(subject_id,subject_name,subject_code) values(44204,'Data Warehousing and Data Mining','204');
+insert into subject(subject_id,subject_name,subject_code) values(44206,'Advanced Computer Networks','206');
+insert into subject(subject_id,subject_name,subject_code) values(44208,'Object Oriented Analysis and Design','208');
+insert into subject(subject_id,subject_name,subject_code) values(44210,'Web Technologies','210');
+insert into subject(subject_id,subject_name,subject_code) values(44252,'Design and Analysis of Algorithms Lab','252'); 
+insert into subject(subject_id,subject_name,subject_code) values(44254,'Data Warehousing and Data Mining Lab','254');
+insert into subject(subject_id,subject_name,subject_code) values(44256,'Advanced Computer Networks Lab','256');
+insert into subject(subject_id,subject_name,subject_code) values(44258,'Object Oriented Analysis and Design Lab','258');
+insert into subject(subject_id,subject_name,subject_code) values(44260,'Web Technologies Lab','260');
+insert into subject(subject_id,subject_name,subject_code) values(44262,'General Proficiency IV*','262');
+insert into subject(subject_id,subject_name,subject_code) values(44301,'Linux Programming','301');
+insert into subject(subject_id,subject_name,subject_code) values(44303,'Software Testing','303');
+insert into subject(subject_id,subject_name,subject_code) values(44305,'Enterprise Computing with Java','305');
+insert into subject(subject_id,subject_name,subject_code) values(44309,'Advanced Database Management Systems','309');
+insert into subject(subject_id,subject_name,subject_code) values(44311,'Numerical and Scientific Computing','311');
+insert into subject(subject_id,subject_name,subject_code) values(44313,'Software Project Management','313');
+insert into subject(subject_id,subject_name,subject_code) values(44315,'Multimedia Technologies','315');
+insert into subject(subject_id,subject_name,subject_code) values(44317,'Mobile Computing','317');
+insert into subject(subject_id,subject_name,subject_code) values(44319,'Artificial Intelligence','319');
+insert into subject(subject_id,subject_name,subject_code) values(44321,'Microprocessors','321');
+insert into subject(subject_id,subject_name,subject_code) values(44323,'Compiler Design','323');
+insert into subject(subject_id,subject_name,subject_code) values(44325,'Operational Research','325');
+insert into subject(subject_id,subject_name,subject_code) values(44327,'Distributed Systems','327');
+insert into subject(subject_id,subject_name,subject_code) values(44329,'Financial Accounting','329');
+insert into subject(subject_id,subject_name,subject_code) values(44331,'Organizational Behavior','331');
+insert into subject(subject_id,subject_name,subject_code) values(44333,'Advanced Computer Architecture','333');
+insert into subject(subject_id,subject_name,subject_code) values(44335,'Software Quality Management','335');
+insert into subject(subject_id,subject_name,subject_code) values(44337,'Digital Signal Processing','337');
+insert into subject(subject_id,subject_name,subject_code) values(44351,'Research Project','351');
+insert into subject(subject_id,subject_name,subject_code) values(44353,'Linux Programming Lab','353');
+insert into subject(subject_id,subject_name,subject_code) values(44355,'Software Testing Lab','355');
+insert into subject(subject_id,subject_name,subject_code) values(44357,'Enterprise Computing with Java Lab','357');
+insert into subject(subject_id,subject_name,subject_code) values(44361,'General Proficiency V*','361');
+insert into subject(subject_id,subject_name,subject_code) values(44302,'Dissertation','302');
+insert into subject(subject_id,subject_name,subject_code) values(44362,'General Proficiency VI*','362');
+insert into subject(subject_id,subject_name,subject_code,subject_type) values(11101,'Administrator','11101','Administrator');
+insert into subject(subject_id,subject_name,subject_code,subject_type) values(11102,'Library','11102','Library');
+insert into subject(subject_id,subject_name,subject_code,subject_type) values(11103,'Laboratory','11103','Laboratory');
+insert into subject(subject_id,subject_name,subject_code,subject_type) values(11104,'Institute','11104','Institute');
+
+insert into question(ques_name,ques_type,ques_usage) values('The objectives of this course were made clear to me by this teacher','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('The teacher speaks, articulate and explains concepts clearly','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('The teacher adheres to the timing Schedule and enforces Discipline in the class','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('The teacher is stimulating, interesting to listen to and inspires the students in the class','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('The lectures were well structured and focused on the topics','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('The teacher has enthusiasm and concern for students','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('The teacher has fair knowledge of the subject matter','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('The teacher’s method of teaching was effective with best possible pedagogies','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('Time spent on lecturing by the teacher for course coverage was sufficient and lesson plan was followed','mcq','general');
+insert into question(ques_name,ques_type,ques_usage) values('The teacher encourages students to raise pertinent questions and answers them','mcq','general');
+
+insert into question(ques_name,ques_type,ques_usage) values('Whether problems have been solved, as and when approached?','mcq','administrator');
+insert into question(ques_name,ques_type,ques_usage) values('Whether overall administrative support has been satisfactorily?','mcq','administrator');
+insert into question(ques_name,ques_type,ques_usage) values('Any specific suggestion for administrative improvement:','text','administrator');
+
+insert into question(ques_name,ques_type,ques_usage) values('Whether enough time has been given for Practice?','mcq','laboratory');
+insert into question(ques_name,ques_type,ques_usage) values('Whether enough exercises and assignments have been given?','mcq','laboratory');
+insert into question(ques_name,ques_type,ques_usage) values('Whether enough support has been provided during practical hours?','mcq','laboratory');
+insert into question(ques_name,ques_type,ques_usage) values('Whether evaluation/assessment has been done?','mcq','laboratory');
+insert into question(ques_name,ques_type,ques_usage) values('Whether mistakes have been highlighted and due corrections have been done?','mcq','laboratory');
+insert into question(ques_name,ques_type,ques_usage) values('Any specific suggestion for improving practical sessions:','text','laboratory');
+
+insert into question(ques_name,ques_type,ques_usage) values('Whether book bank facility has been satisfactory?','mcq','library');
+insert into question(ques_name,ques_type,ques_usage) values('Whether related Magazines / Journals are available in the Library?','mcq','library');
+insert into question(ques_name,ques_type,ques_usage) values('Whether books, which have been requested by students or recommended by faculty, have been procured in the Library?','mcq','library');
+insert into question(ques_name,ques_type,ques_usage) values('Whether facility of reference section has been provided, when required?','mcq','library');
+insert into question(ques_name,ques_type,ques_usage) values('Any specific suggestion for improvement in Library System:','text','library');
+
+insert into question(ques_name,ques_type,ques_usage) values('Whether value added inputs / workshops / seminars have been conducted?','mcq','institute');
+insert into question(ques_name,ques_type,ques_usage) values('List topics on which you feel Lectures / Workshops should be organized in near future:  ','text','institute');
+insert into question(ques_name,ques_type,ques_usage) values('What are your suggestions for further improvement of Teaching Learning System (TLS):','text','institute');
+insert into question(ques_name,ques_type,ques_usage) values('How can you help / contribute to improve the overall system of the Institute (both in short run and long run)?','text','institute');
+insert into question(ques_name,ques_type,ques_usage) values('Five strengths  / positive points of your Institute:','text','institute');
+insert into question(ques_name,ques_type,ques_usage) values('Five weaknesses / negative points of your Institute:','text','institute');
+
