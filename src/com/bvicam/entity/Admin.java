@@ -1,5 +1,5 @@
 package com.bvicam.entity;
 
-public class Admin {
+public class Admin extends User{
 
 }

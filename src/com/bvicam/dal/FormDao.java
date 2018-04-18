@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.bvicam.entity.Form;
+import com.bvicam.entity.QuesOps;
+import com.bvicam.entity.QuesUsage;
 import com.bvicam.entity.Question;
 import com.bvicam.entity.Subject;
 import com.bvicam.entity.SubjectOperations;
@@ -89,13 +91,18 @@ public class FormDao {
 //			}
 //		}
 //	}
-	//not complete
-	// main functionality remaining
+	/* this method updates a particular form based on #form_id
+	 * it checks if the subject of form in being changed or not.
+	 * if there is a change in subject type, then :
+	 * 	1. questions from mapper table are deleted.
+	 * 	2. questions according to new subject are inserted in the mapper table.
+	 * form is updated on the basis of new details.
+	 */
 	public int update(Form fr) throws SQLException{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		int i = 0;
+		int counter = 0;
 		try {
 			conn=ConnectionFactory.getInstance().getConnection();
 			ArrayList<Form> forms = this.read(fr);
@@ -105,19 +112,34 @@ public class FormDao {
 					original_form = temp;
 				}
 			}
-			if(fr.getFormSubId() != original_form.getFormSubId() && SubjectOperations.isGeneral(new Subject(original_form.getFormSubId())) ==false ) {
+			int original_form_subid=original_form.getFormSubId();
+			int fr_subid=fr.getFormSubId();
+			Subject original_sub = new Subject(original_form_subid);
+			Subject new_sub = new Subject(fr_subid);
+			if((original_sub.getType().equals(new_sub.getType())) == false ) {
 				
-			}else {
-				pstmt=conn.prepareStatement("update FeedbackSystem.form set form_id=? , form_name=? , fk_form_subject=? ,"
-						+ " fk_form_teacher=? , fk_tracker_id =? , form_status=?");
-				pstmt.setInt(1, fr.getFormId());
-				pstmt.setString(2,fr.getFormName());
-				pstmt.setInt(3, fr.getFormSubId());
-				pstmt.setInt(4, fr.getFormTeacherId());
-				pstmt.setInt(5, fr.getFormTrackerId());
-				pstmt.setString(6, fr.getFormStatus());
+				pstmt=conn.prepareStatement("delete from mt_form_question where fq_form_id=?");
+				pstmt.setInt(1, original_form_subid);
+				pstmt.executeUpdate();
+				ArrayList<Question> ql =QuesOps.getInstance().getQuestions(QuesUsage.valueOf(new_sub.getType()));
+				for(Question q : ql) {
+					pstmt=conn.prepareStatement("insert into FeedbackSystem.mt_form_question(fq_form_id,"
+							+ "fq_ques_id) values(?,?)");
+					pstmt.setInt(1,fr.getFormId());
+					pstmt.setInt(2, q.getQuesId());
+					pstmt.executeUpdate();
+				}
+				pstmt.close();
 			}
-			pstmt.executeUpdate();
+			pstmt=conn.prepareStatement("update FeedbackSystem.form set form_id=? , form_name=? , fk_form_subject=? ,"
+					+ " fk_form_teacher=? , fk_tracker_id =? , form_status=?");
+			pstmt.setInt(1, fr.getFormId());
+			pstmt.setString(2,fr.getFormName());
+			pstmt.setInt(3, fr.getFormSubId());
+			pstmt.setInt(4, fr.getFormTeacherId());
+			pstmt.setInt(5, fr.getFormTrackerId());
+			pstmt.setString(6, fr.getFormStatus());
+			counter = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -131,8 +153,9 @@ public class FormDao {
 				conn.close();
 			}
 		}
-		return 0;
+		return counter;
 	}
+	
 	public ArrayList<Form> read(Form f) throws SQLException,ClassNotFoundException{
 		Connection conn = null;
 		PreparedStatement pstmt=null;

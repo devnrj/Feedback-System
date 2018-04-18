@@ -34,7 +34,7 @@ public class FormOperations{
 	public void delete(Object o){
 		
 	}
-	public void subChange(Form secodn) {
+	public void read(Form second) {
 		
 	}
 
