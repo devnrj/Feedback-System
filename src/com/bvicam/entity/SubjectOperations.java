@@ -7,7 +7,9 @@ import com.bvicam.dal.SubjectDao;
 
 public class SubjectOperations {
 	public ArrayList<Subject> read(Subject sub) throws ClassNotFoundException, SQLException {
-		return SubjectDao.getInstance().readSubject(sub);
+		ArrayList<Subject> sb =SubjectDao.getInstance().readSubject(sub);
+		System.out.println(sb);
+		return sb;
 	}
 	
 	public static boolean isGeneral(Subject sub) {

@@ -55,6 +55,12 @@ public class Subject {
 	public int getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "Subject [id=" + id + ", name=" + name + ", code=" + code + ", status=" + status + ", type=" + type
+				+ "]";
+	}
 	
 	
 }

@@ -26,11 +26,16 @@ public class SubjectDao {
 	public ArrayList<Subject> readSubject(Subject sub) throws SQLException , ClassNotFoundException{
 		Connection conn=null;
 		PreparedStatement ps= null;
-		ArrayList<Subject> subjects=new ArrayList();
+		ArrayList<Subject> subjects=new ArrayList<>();
 		ResultSet rs=null;
 		try {
 			conn=ConnectionFactory.getInstance().getConnection();
-			ps=conn.prepareStatement("select * from subject where subject_id=? subject_name=? subject_code=? subject_status=? subject_type=?");
+			ps=conn.prepareStatement("select * from FeedbackSystem.subject where subject_id=? or subject_name=? or subject_code=? or subject_status=? or subject_type=?");
+			ps.setInt(1, sub.getId());
+			ps.setString(2, sub.getName());
+			ps.setInt(3, sub.getCode());
+			ps.setString(4, sub.getStatus());
+			ps.setString(5, sub.getType());
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				int subject_id=rs.getInt(1); 

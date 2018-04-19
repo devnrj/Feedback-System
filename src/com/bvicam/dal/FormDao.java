@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.bvicam.entity.Form;
+import com.bvicam.entity.FormOperations;
 import com.bvicam.entity.QuesOps;
 import com.bvicam.entity.QuesUsage;
 import com.bvicam.entity.Question;
@@ -105,23 +106,19 @@ public class FormDao {
 		int counter = 0;
 		try {
 			conn=ConnectionFactory.getInstance().getConnection();
-			ArrayList<Form> forms = this.read(fr);
-			Form original_form=null;
-			for(Form temp:forms) {
-				if(fr.getFormId() == temp.getFormId()) {
-					original_form = temp;
-				}
-			}
+			FormOperations fo = new FormOperations();
+			Form original_form=fo.getFormById(fr.getFormId());
 			int original_form_subid=original_form.getFormSubId();
 			int fr_subid=fr.getFormSubId();
-			Subject original_sub = new Subject(original_form_subid);
-			Subject new_sub = new Subject(fr_subid);
+			SubjectOperations so = new SubjectOperations();
+			Subject original_sub = so.getSubById(original_form_subid);
+			Subject new_sub = so.getSubById(fr_subid);
 			if((original_sub.getType().equals(new_sub.getType())) == false ) {
-				
 				pstmt=conn.prepareStatement("delete from mt_form_question where fq_form_id=?");
 				pstmt.setInt(1, original_form_subid);
 				pstmt.executeUpdate();
-				ArrayList<Question> ql =QuesOps.getInstance().getQuestions(QuesUsage.valueOf(new_sub.getType()));
+				ArrayList<Question> ql =QuesOps.getInstance().getQuestions(QuesUsage.valueOf(new_sub.getType().toUpperCase()));
+				System.out.println(ql);
 				for(Question q : ql) {
 					pstmt=conn.prepareStatement("insert into FeedbackSystem.mt_form_question(fq_form_id,"
 							+ "fq_ques_id) values(?,?)");

@@ -35,8 +35,9 @@ public class QuesOps {
 		
 	}
 	
-	public ArrayList<Question> getQuestions(QuesUsage qu) {
+	public ArrayList<Question> getQuestions(QuesUsage qu) throws ClassNotFoundException, SQLException {
 		//fetch questions on the basis of questype and add into list and return to calling func
+		this.loadQuestions();
 		ArrayList<Question> alist = qo.getQuestionList();	
 		alist=(ArrayList<Question>)quesList.stream().
 				filter(q -> q.getQuesUsage()==qu)

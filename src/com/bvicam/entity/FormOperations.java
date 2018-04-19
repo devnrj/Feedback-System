@@ -16,6 +16,16 @@ public class FormOperations{
 			}
 		return 0;
 	}
+	public Form getFormById(int formid) throws ClassNotFoundException, SQLException {
+		FormDao fd = FormDao.getInstance();
+		ArrayList<Form> forms = fd.read(new Form(formid));
+		for(Form temp:forms) {
+			if(formid == temp.getFormId()) {
+				return temp;
+			}
+		}
+		return null;
+	}
 	public Object read(Object o){
 		return o;
 	}

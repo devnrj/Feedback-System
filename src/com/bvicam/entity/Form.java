@@ -1,5 +1,6 @@
 package com.bvicam.entity;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Form implements Comparable<Form>{ 
@@ -42,7 +43,7 @@ public class Form implements Comparable<Form>{
 	public void setFormTrackerId(int fTrackerId) {
 		this.fTrackerId = fTrackerId;
 	}
-	public void setQuestions(QuesUsage qu) {
+	public void setQuestions(QuesUsage qu) throws ClassNotFoundException, SQLException {
 		 qList=QuesOps.getInstance().getQuestions(qu);
 	}
 	public void setQuestions(ArrayList<Question> ql) {
@@ -89,5 +90,11 @@ public class Form implements Comparable<Form>{
 	public int compareTo(Form second) {
 		return this.fid-second.fid;
 	}
+	@Override
+	public String toString() {
+		return "Form [fid=" + fid + ", teacherid=" + teacherid + ", subid=" + subid + ", status=" + status + ", fName="
+				+ fName + ", qList=" + qList + ", fTrackerId=" + fTrackerId + "]";
+	}
+	
 
 }
