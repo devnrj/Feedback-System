@@ -38,7 +38,7 @@ public class TestClass {
 		
 		FormDao fd =FormDao.getInstance();
 		Form fr = new Form(1);
-		fr.setFormSubId(44101);
+		fr.setFormSubId(11102);
 		fr.setFormName("Neeraj");
 		fd.update(fr);
 	}

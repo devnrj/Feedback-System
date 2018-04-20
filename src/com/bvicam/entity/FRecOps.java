@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class FRecOps {
 
-	ArrayList<FeedbackRecord> frlist=new ArrayList<>();
-	FeedbackRecord fr = new FeedbackRecord();
+	ArrayList<Feedback> frlist=new ArrayList<>();
+	Feedback fr = new Feedback();
 	
 	void show()
 	{

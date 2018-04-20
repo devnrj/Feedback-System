@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class FeedbackRecord {
+public class Feedback {
 	int fid;
 	int rollno;
 	int subject_id;
