@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.bvicam.entity.Answer;
+import com.bvicam.entity.AnswerOps;
 import com.bvicam.entity.Feedback;
 import com.bvicam.entity.Form;
 import com.bvicam.entity.Student;
@@ -86,10 +87,32 @@ public class FeedbackDao {
 			pstmt.setInt(1, feedback.getRollno());
 			pstmt.setInt(2, feedback.getFormid());
 			pstmt.setString(3,feedback.getStatus());
-			
 			pstmt.executeUpdate();
 		}finally {
 			if(rs!=null) 	{	rs.close();		}
+			if(pstmt!=null)	{	pstmt.close();	}
+			if(conn!=null)	{	conn.close();	}
+		}
+		return count;
+	}
+	public int update(Feedback feedback) {
+		//time status score
+		return 0;
+	}
+	public int delete(Feedback feedback) throws ClassNotFoundException, SQLException {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			conn=ConnectionFactory.getInstance().getConnection();
+			pstmt=conn.prepareStatement("delete from feedback_record where feedback_id=? or "
+					+ "student_id=? or form_id=?");
+			pstmt.setInt(1, feedback.getFid());
+			pstmt.setInt(2, feedback.getRollno());
+			pstmt.setInt(3, feedback.getFormid());
+			count=pstmt.executeUpdate();
+		}finally{
 			if(pstmt!=null)	{	pstmt.close();	}
 			if(conn!=null)	{	conn.close();	}
 		}
