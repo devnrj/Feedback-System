@@ -60,5 +60,7 @@ public class QuesOps {
 			//not complete
 		}
 	}
-
+	public Question getQuestionById(int qid) throws ClassNotFoundException, SQLException {
+		return QuesDao.getInstance().getQuestion(qid);
+	}
 }

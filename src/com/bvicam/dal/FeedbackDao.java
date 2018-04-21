@@ -4,8 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.bvicam.entity.Answer;
+import com.bvicam.entity.Feedback;
 import com.bvicam.entity.Form;
+import com.bvicam.entity.Student;
+import com.bvicam.entity.User;
 import com.bvicam.misc.ConnectionFactory;
 
 public class FeedbackDao {
@@ -40,4 +45,54 @@ public class FeedbackDao {
 		return count;
 	}
 	
+	public ArrayList<Feedback> read(Object o) throws SQLException,ClassNotFoundException{
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		ArrayList<Feedback> feedbacks = new ArrayList<>();
+		try{
+			conn=ConnectionFactory.getInstance().getConnection();
+			if(o instanceof Form && o !=null) {
+				Form fr = (Form) o;
+				pstmt=conn.prepareStatement("select * from feedback_record where fk_form_id=?");
+				pstmt.setInt(1, fr.getFormId());
+			}else if(o instanceof Student && o !=null) {
+				Student usr = (Student) o;
+				pstmt=conn.prepareStatement("select * from feedback_record where fk_student_id=?");
+				pstmt.setInt(1, usr.getId());
+			}
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ArrayList<Answer> answers =new ArrayList<>();	// <-- get answers for current feedback
+				Feedback fd = new Feedback(rs.getInt(1),rs.getInt(2),rs.getString(5),rs.getInt(6),rs.getInt(3),answers);
+				feedbacks.add(fd);
+			}
+		}finally {
+			if(rs!=null) 	{	rs.close();		}
+			if(pstmt!=null)	{	pstmt.close();	}
+			if(conn!=null)	{	conn.close();	}
+		}
+		return feedbacks;
+	} 
+	public int create(Feedback feedback) throws SQLException, ClassNotFoundException {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			conn=ConnectionFactory.getInstance().getConnection();
+			pstmt=conn.prepareStatement("insert into feedback_record(fk_student_id,fk_form_id,"
+					+ "feedback_status)");
+			pstmt.setInt(1, feedback.getRollno());
+			pstmt.setInt(2, feedback.getFormid());
+			pstmt.setString(3,feedback.getStatus());
+			
+			pstmt.executeUpdate();
+		}finally {
+			if(rs!=null) 	{	rs.close();		}
+			if(pstmt!=null)	{	pstmt.close();	}
+			if(conn!=null)	{	conn.close();	}
+		}
+		return count;
+	}
 }

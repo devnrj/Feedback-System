@@ -64,6 +64,38 @@ public class QuesDao{
 		}
 		return qList;
 	}
+	
+	public Question getQuestion(int qid) throws ClassNotFoundException, SQLException{
+		Connection conn = null; 
+		PreparedStatement stmt = null;
+		ResultSet rs= null;
+		Question qs=null;
+		try {
+			conn = ConnectionFactory.getInstance().getConnection();
+			stmt=conn.prepareStatement("Select * from question where ques_id = ?");
+			stmt.setInt(1, qid);
+			rs=stmt.executeQuery();
+			if(!rs.next()) {
+				System.out.println("No records found");
+			}
+			qs = new Question();
+			int quesid= Integer.parseInt(rs.getString("ques_id"));
+			String qname=rs.getString("ques_name");
+			String qtype = rs.getString("ques_type");
+			String quse=rs.getString("ques_usage");
+			qs.setQuesId(quesid);
+			qs.setQuesName(qname);
+			qs.setType(QuesType.valueOf(qtype.toUpperCase(Locale.ENGLISH)));
+			qs.setQuesUsage(QuesUsage.valueOf(quse.toUpperCase(Locale.ENGLISH)));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null)		{	rs.close();		}
+			if(stmt!=null)	{	stmt.close();	}
+			if(conn!=null)	{	conn.close();	}
+		}
+		return qs;
+	}
 	//add question
 	//update question
 	//delete question
