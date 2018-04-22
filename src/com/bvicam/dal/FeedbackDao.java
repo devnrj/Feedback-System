@@ -65,7 +65,8 @@ public class FeedbackDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				ArrayList<Answer> answers =new ArrayList<>();	// <-- get answers for current feedback
-				Feedback fd = new Feedback(rs.getInt(1),rs.getInt(2),rs.getString(5),rs.getInt(6),rs.getInt(3),answers);
+				Feedback fd = new Feedback(rs.getInt(1),rs.getInt(2),rs.getString(5),
+						rs.getInt(6),rs.getInt(3),answers,rs.getTimestamp(4));
 				feedbacks.add(fd);
 			}
 		}finally {
@@ -95,14 +96,27 @@ public class FeedbackDao {
 		}
 		return count;
 	}
-	public int update(Feedback feedback) {
-		//time status score
-		return 0;
+	public int update(Feedback feedback) throws ClassNotFoundException, SQLException {
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		int count=0;
+		try {
+			conn=ConnectionFactory.getInstance().getConnection();
+			pstmt=conn.prepareStatement("update table feedback_record set feedback_update_time = ? feedback_status=?"
+					+ "feedback_score");
+			pstmt.setTimestamp(1, feedback.getTime());
+			pstmt.setString(2, feedback.getStatus());
+			pstmt.setInt(3, feedback.getScore());
+			count=pstmt.executeUpdate();
+		}finally{
+			if(pstmt!=null)	{	pstmt.close();	}
+			if(conn!=null)	{	conn.close();	}
+		}
+		return count;
 	}
 	public int delete(Feedback feedback) throws ClassNotFoundException, SQLException {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		ResultSet rs=null;
 		int count=0;
 		try {
 			conn=ConnectionFactory.getInstance().getConnection();

@@ -1,13 +1,20 @@
 package com.bvicam.entity;
 
 public class Answer {
-	private int aid;
+	private final int aid;
 	private int fid;
 	private int qid;
 	private char mcq;
 	private String text;
 	
-	public Answer(int aid, int fid, int qid, char mcq, String text) {
+	public Answer(final int aid) {
+		this.aid=aid;
+	}
+	public Answer(final int aid,int fid) {
+		this.aid=aid;
+		this.fid=fid;
+	}
+	public Answer(final int aid, int fid, int qid, char mcq, String text) {
 		super();
 		this.aid = aid;
 		this.fid = fid;
@@ -17,9 +24,6 @@ public class Answer {
 	}
 	public int getAid() {
 		return aid;
-	}
-	public void setAid(int aid) {
-		this.aid = aid;
 	}
 	public int getFid() {
 		return fid;

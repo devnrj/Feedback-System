@@ -1,20 +1,21 @@
 package com.bvicam.entity;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Feedback {
-	final int fid;
-	int rollno;
-	//feedback_update_time
-	String status;
-	int score;
-	int form_id;
-	ArrayList<Answer> answer;
+	private final int fid;
+	private int rollno;
+	private Timestamp fupdtime;
+	private String status;
+	private int score;
+	private int form_id;
+	private ArrayList<Answer> answer;
 	public Feedback(final int id) {
 		fid=id;
 	}
 	
-	public Feedback(int fid, int rollno, String status, int score, int form_id, ArrayList<Answer> answer) {
+	public Feedback(int fid, int rollno, String status, int score, int form_id, ArrayList<Answer> answer,Timestamp time) {
 		super();
 		this.fid = fid;
 		this.rollno = rollno;
@@ -22,10 +23,17 @@ public class Feedback {
 		this.score = score;
 		this.form_id = form_id;
 		this.answer = answer;
+		this.fupdtime = time;
 	}
 
 	public int getRollno() {
 		return rollno;
+	}
+	public Timestamp getTime() {
+		return fupdtime;
+	}
+	public void setTime(Timestamp ts) {
+		fupdtime=ts;
 	}
 	public void setRollno(int rollno) {
 		this.rollno = rollno;
