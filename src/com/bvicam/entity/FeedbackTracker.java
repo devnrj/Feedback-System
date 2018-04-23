@@ -3,14 +3,25 @@ package com.bvicam.entity;
 import java.sql.Date;
 
 public class FeedbackTracker {
+	private int fTrackerid;
 	private String batch_year;
 	private int semester;
-	private int section;
 	private Date start_date;
 	private Date end_date;
 	private Date critical_date;
-	private int fTrackerid;
+	private int section;
 	
+	public FeedbackTracker(int fTrackerid, String batch_year, int semester, Date start_date, Date end_date,
+			Date critical_date, int section) {
+		super();
+		this.fTrackerid = fTrackerid;
+		this.batch_year = batch_year;
+		this.semester = semester;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.critical_date = critical_date;
+		this.section = section;
+	}
 	public int getfTrackerid() {
 		return fTrackerid;
 	}

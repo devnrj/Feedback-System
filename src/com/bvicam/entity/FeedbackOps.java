@@ -19,6 +19,7 @@ public class FeedbackOps {
 		ArrayList<Feedback> feedbacks=FeedbackDao.getInstance().read(f);
 		return feedbacks;
 	}
+	
 	public int update(Feedback feedback) throws ClassNotFoundException, SQLException {
 		if(feedback == null) {
 			return -1;
@@ -28,6 +29,7 @@ public class FeedbackOps {
 		}
 		return FeedbackDao.getInstance().update(feedback);	
 	}
+	
 	public int delete(Feedback feedback) throws ClassNotFoundException, SQLException {
 		if(feedback == null) {
 			return -1;
